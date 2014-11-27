@@ -1,0 +1,41 @@
+{
+  "name": "mixa_db_js_functions",
+  "version": "0.0.1",
+  "description": "my standart javascript functions for work with db in node.js",
+  "readme": "my standart javascript functions for work with db in node.js\n\n",
+  "author": {
+    "name": "Mixa Marciv",
+    "email": "mixamarciv@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/mixamarciv"
+  },
+  "keywords": [
+    "mixa",
+    "marciv",
+    "db",
+    "js functions"
+  ],
+  "dependencies": {
+    "node-firebird": "*"
+  },
+  "devDependencies": {
+    "mocha": "*",
+    "should": "*"
+  },
+  "main": "./index",
+  "engines": {
+    "node": ">= 0.6.1"
+  },
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/mixamarciv/issues"
+  },
+  "homepage": "https://github.com/mixamarciv",
+
+  "_id": "mixa_db_js_functions@0.0.1",
+  "_from": "https://github.com/mixamarciv/mixa_db_js_functions/tarball/master",
+  "_resolved": "https://github.com/mixamarciv/mixa_db_js_functions/tarball/master"
+}
+
