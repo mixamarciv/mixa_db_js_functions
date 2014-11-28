@@ -90,6 +90,35 @@ describe('run firebird tests', function() {
         });
     });
 
+    
+    var json_q = {};
+    describe('json()', function() {
+        it('should return object for work with json records', function(done) {
+            conn.query('DROP TABLE test_table5',function(err){
+                conn.json('test_table5',function(err,json_tb){
+                    should.not.exist(err);
+                    json_q = json_tb;
+                    conn.query('SELECT COUNT(*) AS cnt FROM test_table5',function(err,rows){
+                        should.not.exist(err);
+                        var cnt = rows[0].cnt;
+                        done();
+                    });
+                });
+            });
+        });
+    });
+    
+    describe('json().set', function() {
+        it('should set json data to db', function(done) {
+            json_q.set('testkey1',{test:1}, function(err){
+                should.not.exist(err);
+            });
+        });
+    });
+    
+    
+
+    
     describe('close()', function() {
         it('detach database', function(done) {
             conn.close(function(err){

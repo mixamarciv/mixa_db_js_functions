@@ -26,6 +26,17 @@ db.connect(options,function(err,connect){
         if(err) trow(err);
         console.log('next id:'+gen_id);
     });
+    
+    connect.json('json_table_name',function(err,jsonworker){
+        jsonworker.set('key1',{name:'hehe',x:10,y:20},function(err){
+            if(err) trow(err);
+            console.log('save key1');
+            jsonworker.get('key1',function(err,data){
+                if(err) trow(err);
+                console.log('load key1:'+JSON.stringify(data));
+            });
+        });
+    });
 });
 *************/
 'use strict';
