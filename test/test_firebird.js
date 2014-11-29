@@ -94,8 +94,8 @@ describe('run firebird tests', function() {
     var json_q = {};
     describe('json()', function() {
         it('should return object for work with json records', function(done) {
-            conn.query('DROP TABLE test_table5',function(err){
-                conn.json('test_table5',function(err,json_tb){
+            conn.query('DROP TABLE test_table6',function(err){
+                conn.json('test_table6',function(err,json_tb){
                     should.not.exist(err);
                     json_q = json_tb;
                     conn.query('SELECT COUNT(*) AS cnt FROM test_table5',function(err,rows){
@@ -108,15 +108,26 @@ describe('run firebird tests', function() {
         });
     });
     
+    var test_obj = {test1:1,test2:{aaa:1,bbb:2,ccc:3}};
+    
     describe('json().set', function() {
         it('should set json data to db', function(done) {
-            json_q.set('testkey1',{test:1}, function(err){
+            json_q.set('testkey1',test_obj, function(err){
                 should.not.exist(err);
+                done();
             });
         });
     });
     
-    
+    describe('json().get', function() {
+        it('should get json data from db', function(done) {
+            json_q.get('testkey1', function(err,data){
+                should.not.exist(err);
+                data.should.be.eql(test_obj);
+                done();
+            });
+        });
+    });
 
     
     describe('close()', function() {
