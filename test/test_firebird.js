@@ -80,11 +80,36 @@ describe('run firebird tests', function() {
         });
     });
     
+    
+    describe('query() 2', function(){
+        var query = 'SELECT id,data FROM test_table1 where id=? or id=?';
+        it('run: '+query, function(done){
+            conn.query(query,[101,102],function(err,rows){
+                should.not.exist(err);
+                should.exist(rows);
+                done();
+            });
+        });
+    });
+    
+    describe('query() 3', function(){
+        var query = 'SELECT id,data FROM test_table1 where id=? or id=?';
+        it('run: '+query, function(done){
+            conn.query(query,{params:[101,102]},function(err,rows){
+                should.not.exist(err);
+                should.exist(rows);
+                done();
+            });
+        });
+    });
+    
     describe('next_id()', function() {
         it('generator should return 104', function(done) {
             conn.next_id('test_table1_id',function(err,id){
                 should.not.exist(err);
-                (id.high_ + id.low_).should.be.equal(104);
+                var rid = id.high_ + id.low_;
+                if (!rid) rid = id;
+                (rid).should.be.equal(104);
                 done();
             });
         });
@@ -98,7 +123,7 @@ describe('run firebird tests', function() {
                 conn.json('test_table6',function(err,json_tb){
                     should.not.exist(err);
                     json_q = json_tb;
-                    conn.query('SELECT COUNT(*) AS cnt FROM test_table5',function(err,rows){
+                    conn.query('SELECT COUNT(*) AS cnt FROM test_table6',function(err,rows){
                         should.not.exist(err);
                         var cnt = rows[0].cnt;
                         done();
