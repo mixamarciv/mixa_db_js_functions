@@ -18,7 +18,7 @@
     "js functions"
   ],
   "dependencies": {
-    "node-firebird": "*"
+    "node-firebird": "0.2.*"
   },
   "devDependencies": {
     "mocha": "*",
